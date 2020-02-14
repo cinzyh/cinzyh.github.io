@@ -228,7 +228,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cinzyh.github.io/cinzyh.github.io/2020/02/13/%E2%80%9D%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E2%80%9C/">
+    <link itemprop="mainEntityOfPage" href="https://cinzyh.github.io/cinzyh.github.io/2020/02/13/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="cinzyh">
@@ -247,7 +247,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/cinzyh.github.io/2020/02/13/%E2%80%9D%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E2%80%9C/" itemprop="url">”动手学深度学习笔记“</a></h1>
+                <a class="post-title-link" href="/cinzyh.github.io/2020/02/13/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url">”动手学深度学习笔记“</a></h1>
         
 
         <div class="post-meta">
@@ -299,21 +299,13 @@
       
         
           
-            <h1 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h1><h1 id="softmax与分类模型"><a href="#softmax与分类模型" class="headerlink" title="softmax与分类模型"></a>softmax与分类模型</h1><h1 id="多层感知机"><a href="#多层感知机" class="headerlink" title="多层感知机"></a>多层感知机</h1><ol>
-<li>多层感知机的基本知识</li>
-<li>使用多层感知机图像分类的从零开始的实现</li>
-<li>使用pytorch的简洁实现</li>
-</ol>
-<h2 id="多层感知机的基本知识"><a href="#多层感知机的基本知识" class="headerlink" title="多层感知机的基本知识"></a>多层感知机的基本知识</h2><p>深度学习主要关注多层模型。在这里，我们将以多层感知机（multilayer perceptron，MLP）为例，介绍多层神经网络的概念。</p>
-<h3 id="隐藏层"><a href="#隐藏层" class="headerlink" title="隐藏层"></a>隐藏层</h3><p>下图展示了一个多层感知机的神经网络图，它含有一个隐藏层，该层中有5个隐藏单元。</p>
+            <h1 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h1><h1 id="softmax与分类模型"><a href="#softmax与分类模型" class="headerlink" title="softmax与分类模型"></a>softmax与分类模型</h1><h1 id="多层感知机"><a href="#多层感知机" class="headerlink" title="多层感知机"></a>多层感知机</h1><h3 id="隐藏层"><a href="#隐藏层" class="headerlink" title="隐藏层"></a>隐藏层</h3><p>下图展示了一个多层感知机的神经网络图，它含有一个隐藏层，该层中有5个隐藏单元。</p>
 <p><img src="https://cdn.kesci.com/upload/image/q5ho684jmh.png" alt="Image Name"></p>
 <h3 id="表达公式"><a href="#表达公式" class="headerlink" title="表达公式"></a>表达公式</h3><script type="math/tex; mode=display">
 \begin{aligned} \boldsymbol{H} &= \boldsymbol{X} \boldsymbol{W}_h + \boldsymbol{b}_h,\\ \boldsymbol{O} &= \boldsymbol{H} \boldsymbol{W}_o + \boldsymbol{b}_o, \end{aligned}</script><p>也就是将隐藏层的输出直接作为输出层的输入。如果将以上两个式子联立起来，可以得到</p>
 <script type="math/tex; mode=display">
 \boldsymbol{O} = (\boldsymbol{X} \boldsymbol{W}_h + \boldsymbol{b}_h)\boldsymbol{W}_o + \boldsymbol{b}_o = \boldsymbol{X} \boldsymbol{W}_h\boldsymbol{W}_o + \boldsymbol{b}_h \boldsymbol{W}_o + \boldsymbol{b}_o.</script><p>仍然等价于一个单层的神经网络。</p>
-<h3 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h3><p>上述问题的根源在于全连接层只是对数据做仿射变换（affine transformation），而多个仿射变换的叠加仍然是一个仿射变换。解决问题的一个方法是引入非线性变换，例如对隐藏变量使用按元素运算的非线性函数进行变换，然后再作为下一个全连接层的输入。这个非线性函数被称为激活函数（activation function）。</p>
-<p>下面我们介绍几个常用的激活函数：</p>
-<h4 id="ReLU函数"><a href="#ReLU函数" class="headerlink" title="ReLU函数"></a>ReLU函数</h4><p>ReLU（rectified linear unit）函数提供了一个很简单的<em>非线性变换</em>。给定元素，该函数定义为</p>
+<h3 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h3><h4 id="ReLU函数"><a href="#ReLU函数" class="headerlink" title="ReLU函数"></a>ReLU函数</h4><p>ReLU（rectified linear unit）函数提供了一个很简单的<em>非线性变换</em>。给定元素，该函数定义为</p>
 <script type="math/tex; mode=display">
 \text{ReLU}(x) = \max(x, 0).</script><p>可以看出，ReLU函数<u>只保留正数元素，并将负数元素清零</u>。为了直观地观察这一非线性变换，我们先定义一个绘图函数xyplot。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">sys.path.append(<span class="string">"/home/kesci/input"</span>)®</span><br><span class="line"><span class="keyword">import</span> d2lzh1981 <span class="keyword">as</span> d2l</span><br><span class="line">print(torch.__version__)</span><br></pre></td></tr></table></figure>
@@ -328,22 +320,25 @@
 <p><img src="https://cdn.kesci.com/rt_upload/68FCB4E8142144458F13128B370D1C91/q5hv7dor11.png"></p>
 <p>依据链式法则，sigmoid函数的导数</p>
 <script type="math/tex; mode=display">
-\text{sigmoid}'(x) = \text{sigmoid}(x)\left(1-\text{sigmoid}(x)\right).</script><p>下面绘制了sigmoid函数的导数。当输入为0时，sigmoid函数的导数达到最大值0.25；当输入越偏离0时，sigmoid函数的导数越接近0。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x.grad.zero_() <span class="comment">#x的梯度清零（relu前面求过）</span></span><br><span class="line">y.sum().backward()  <span class="comment">#利用反向传播，求梯度</span></span><br><span class="line">xyplot(x, x.grad, <span class="string">'grad of sigmoid'</span>) <span class="comment">#sigmoid导数的图像</span></span><br></pre></td></tr></table></figure>
+\text{sigmoid}'(x) = \text{sigmoid}(x)\left(1-\text{sigmoid}(x)\right).</script><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x.grad.zero_() <span class="comment">#x的梯度清零（relu前面求过）</span></span><br><span class="line">y.sum().backward()  <span class="comment">#利用反向传播，求梯度</span></span><br><span class="line">xyplot(x, x.grad, <span class="string">'grad of sigmoid'</span>) <span class="comment">#sigmoid导数的图像</span></span><br></pre></td></tr></table></figure>
 <p><img src="https://cdn.kesci.com/rt_upload/878C7B8823304F72860965E119A21412/q5hv7dpse9.png"></p>
 <h4 id="tanh函数"><a href="#tanh函数" class="headerlink" title="tanh函数"></a>tanh函数</h4><p><u>tanh（双曲正切）函数可以将元素的值变换到-1和1之间：</u></p>
 <script type="math/tex; mode=display">
-\text{tanh}(x) = \frac{1 - \exp(-2x)}{1 + \exp(-2x)}.</script><p>我们接着绘制tanh函数。当输入接近0时，tanh函数接近线性变换。虽然该函数的形状和sigmoid函数的形状很像，但tanh函数在坐标系的原点上对称。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y = x.tanh() <span class="comment">#调用双曲正切函数得到函数值y</span></span><br><span class="line">xyplot(x, y, <span class="string">'tanh'</span>) <span class="comment">#绘制双曲正切函数的图像</span></span><br></pre></td></tr></table></figure>
+\text{tanh}(x) = \frac{1 - \exp(-2x)}{1 + \exp(-2x)}.</script><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y = x.tanh() <span class="comment">#调用双曲正切函数得到函数值y</span></span><br><span class="line">xyplot(x, y, <span class="string">'tanh'</span>) <span class="comment">#绘制双曲正切函数的图像</span></span><br></pre></td></tr></table></figure>
 <p><img src="https://cdn.kesci.com/rt_upload/92D16076309F42169482834C0B6ABB24/q5hv7dfeso.png"></p>
 <p>依据链式法则，tanh函数的导数（[0,1])</p>
 <script type="math/tex; mode=display">
-\text{tanh}'(x) = 1 - \text{tanh}^2(x).</script><p>下面绘制了tanh函数的导数。当输入为0时，tanh函数的导数达到最大值1；当输入越偏离0时，tanh函数的导数越接近0。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x.grad.zero_()</span><br><span class="line">y.sum().backward()</span><br><span class="line">xyplot(x, x.grad, <span class="string">'grad of tanh'</span>)</span><br></pre></td></tr></table></figure>
+\text{tanh}'(x) = 1 - \text{tanh}^2(x).</script><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x.grad.zero_()</span><br><span class="line">y.sum().backward()</span><br><span class="line">xyplot(x, x.grad, <span class="string">'grad of tanh'</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="https://cdn.kesci.com/rt_upload/CB16F4B33E664E14BCE8E52D8B37C47F/q5hv7ejc8y.png"></p>
-<h3 id="关于激活函数的选择"><a href="#关于激活函数的选择" class="headerlink" title="关于激活函数的选择"></a>关于激活函数的选择</h3><p>ReLu函数是一个通用的激活函数，目前在大多数情况下使用。但是，ReLU函数<u>只能在隐藏层中使用</u>。</p>
-<p>用于分类器时，sigmoid函数及其组合通常效果更好。由于梯度消失问题，有时要避免使用sigmoid和tanh函数。  </p>
-<p>在<u>神经网络层数较多</u>的时候，最好使用<u>ReLu函数</u>，ReLu函数比较简单计算量少，而sigmoid和tanh函数计算量大很多。</p>
+<h3 id="关于激活函数的选择"><a href="#关于激活函数的选择" class="headerlink" title="关于激活函数的选择"></a>关于激活函数的选择</h3><ul>
+<li><p>ReLU函数<u>只能在隐藏层中使用</u>。</p>
+</li>
+<li><p>用于分类器时，sigmoid函数及其组合通常效果更好。由于梯度消失问题，有时要避免使用sigmoid和tanh函数。  </p>
+</li>
+</ul>
+<ul>
+<li>在<u>神经网络层数较多</u>的时候，最好使用<u>ReLu函数</u></li>
+</ul>
 <p>在选择激活函数的时候可以先选用ReLu函数如果效果不理想可以尝试其他激活函数。</p>
 <h3 id="多层感知机-1"><a href="#多层感知机-1" class="headerlink" title="多层感知机"></a>多层感知机</h3><p>多层感知机就是含有至少一个隐藏层的由全连接层组成的神经网络，且每个隐藏层的输出通过<u>激活函数</u>进行变换。多层感知机的层数和各隐藏层中隐藏单元个数都是超参数。以单隐藏层为例并沿用本节之前定义的符号，多层感知机按以下方式计算输出：</p>
 <script type="math/tex; mode=display">
@@ -497,7 +492,19 @@ X:  tensor([[ 6,  7,  8,  9, 10, 11],
         [21, 22, 23, 24, 25, 26]]) 
 Y: tensor([[ 7,  8,  9, 10, 11, 12],
         [22, 23, 24, 25, 26, 27]]) 
-</code></pre>
+</code></pre><h1 id="循环神经网络"><a href="#循环神经网络" class="headerlink" title="循环神经网络"></a>循环神经网络</h1><ul>
+<li><p>基于循环神经网络实现语言模型。</p>
+</li>
+<li><p>目的：基于当前的输入与过去的输入序列，预测序列的下一个字符。</p>
+</li>
+<li><p>循环神经网络引入一个隐藏变量$H$，用$H_{t}$表示$H$在时间步$t$的值。$H_{t}$的计算基于$X_{t}$和$H_{t-1}$，可以认为$H_{t}$记录了到当前字符为止的序列信息，利用$H_{t}$对序列的下一个字符进行预测。<br><img src="https://cdn.kesci.com/upload/image/q5jkm0v44i.png?imageView2/0/w/640/h/640" alt="Image Name"></p>
+</li>
+</ul>
+<h2 id="循环神经网络的构造"><a href="#循环神经网络的构造" class="headerlink" title="循环神经网络的构造"></a>循环神经网络的构造</h2><p>假设$\boldsymbol{X}_t \in \mathbb{R}^{n \times d}$是时间步$t$的小批量输入，$\boldsymbol{H}_t  \in \mathbb{R}^{n \times h}$是该时间步的隐藏变量，则：</p>
+<script type="math/tex; mode=display">
+\boldsymbol{H}_t = \phi(\boldsymbol{X}_t \boldsymbol{W}_{xh} + \boldsymbol{H}_{t-1} \boldsymbol{W}_{hh}  + \boldsymbol{b}_h).</script><p>在时间步$t$，输出层的输出为：</p>
+<script type="math/tex; mode=display">
+\boldsymbol{O}_t = \boldsymbol{H}_t \boldsymbol{W}_{hq} + \boldsymbol{b}_q.</script><h2 id><a href="#" class="headerlink" title=" "></a> </h2>
           
         
       
